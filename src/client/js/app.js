@@ -142,6 +142,8 @@ roundFoodSetting.onchange = settings.toggleRoundFood;
 
 var c = window.canvas.cv;
 var graph = c.getContext('2d');
+img = new Image();
+img.src = 'https://www.google.nl/images/srpr/logo3w.png';
 
 $( "#feed" ).click(function() {
     socket.emit('1');
@@ -303,11 +305,10 @@ function drawCircle(centerX, centerY, radius, sides) {
 
     graph.beginPath();
 
-    for (var i = 0; i < sides; i++) {
-        theta = (i / sides) * 2 * Math.PI;
-        x = centerX + radius * Math.sin(theta);
-        y = centerY + radius * Math.cos(theta);
-        graph.lineTo(x, y);
+    for (var w = 0; w < canvas.width; w += img.width) {
+        for (var h = 0; h < canvas.height; h  += img.height) {
+            context.drawImage(img, w, h);
+        }
     }
 
     graph.closePath();
